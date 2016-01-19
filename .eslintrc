@@ -1,0 +1,16 @@
+{
+  "extends": "openlayers",
+  "env": {
+    "jquery": true
+  },
+  "rules": {
+  },
+  "globals": {
+    "angular": false,
+    "goog": false,
+    "ol": false,
+    "proj4": false,
+    "ngeo": false,
+    "gmf": false
+  }
+}

@@ -117,7 +117,7 @@ build-gmf-mobile-app: $(addprefix contribs/gmf/build/mobile,.js .css) \
 check-examples: $(BUILD_EXAMPLES_CHECK_TIMESTAMP_FILES)
 
 .PHONY: lint
-lint: .build/python-venv/bin/gjslint .build/node_modules.timestamp .build/gjslint.timestamp .build/jshint.timestamp
+lint: .build/node_modules.timestamp .build/eslint.timestamp
 
 .PHONY: test
 test: .build/ol-deps.js .build/ngeo-deps.js .build/gmf-deps.js .build/templatecache.js .build/gmftemplatecache.js .build/node_modules.timestamp
@@ -158,12 +158,8 @@ gh-pages: .build/ngeo-$(GITHUB_USERNAME)-gh-pages \
 .build/ngeo-$(GITHUB_USERNAME)-gh-pages:
 	git clone --branch gh-pages $(GIT_REMOTE_URL) $@
 
-.build/gjslint.timestamp: $(SRC_JS_FILES) $(EXPORTS_JS_FILES) $(EXAMPLES_JS_FILES) $(GMF_SRC_JS_FILES) $(GMF_EXAMPLES_JS_FILES) $(GMF_APPS_MOBILE_JS_FILES)
-	.build/python-venv/bin/gjslint --jslint_error=all --strict --custom_jsdoc_tags=event,fires,function,classdesc,api,observable,example,module,ngdoc,ngname $?
-	touch $@
-
-.build/jshint.timestamp: $(SRC_JS_FILES) $(EXPORTS_JS_FILES) $(EXAMPLES_JS_FILES) $(GMF_SRC_JS_FILES) $(GMF_EXAMPLES_JS_FILES) $(GMF_APPS_MOBILE_JS_FILES)
-	./node_modules/.bin/jshint --verbose $?
+.build/eslint.timestamp: $(SRC_JS_FILES) $(EXPORTS_JS_FILES) $(EXAMPLES_JS_FILES) $(GMF_SRC_JS_FILES) $(GMF_EXAMPLES_JS_FILES) $(GMF_APPS_MOBILE_JS_FILES)
+	./node_modules/.bin/eslint $?
 	touch $@
 
 dist/ngeo.js: buildtools/ngeo.json \
@@ -440,10 +436,6 @@ $(EXTERNS_JQUERY):
 	mkdir -p $(dir $@)
 	virtualenv --no-site-packages $@
 
-.build/python-venv/bin/gjslint: .build/python-venv
-	.build/python-venv/bin/pip install "http://closure-linter.googlecode.com/files/closure_linter-latest.tar.gz"
-	touch $@
-
 .build/python-venv/bin/mako-render: .build/python-venv
 	.build/python-venv/bin/pip install "Mako==1.0.0" "htmlmin==0.1.10"
 	touch $@
@@ -587,8 +579,7 @@ gmf-icons-generate: package.json
 clean:
 	rm -f .build/*.check.timestamp
 	rm -f .build/examples/*.js
-	rm -f .build/gjslint.timestamp
-	rm -f .build/jshint.timestamp
+	rm -f .build/eslint.timestamp
 	rm -f .build/ol-deps.js
 	rm -f .build/ngeo-deps.js
 	rm -f .build/gmf-deps.js

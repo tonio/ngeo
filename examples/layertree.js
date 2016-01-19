@@ -54,7 +54,6 @@ app.layertreeDirective = function() {
 app.module.directive('appLayertree', app.layertreeDirective);
 
 
-
 /**
  * @constructor
  * @param {angular.$http} $http Angular http service.

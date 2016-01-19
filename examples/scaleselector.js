@@ -42,7 +42,6 @@ app.scaleselectorDirective = function() {
 app.module.directive('appScaleselector', app.scaleselectorDirective);
 
 
-
 /**
  * @constructor
  * @param {angular.$sce} $sce Angular sce service.

@@ -52,7 +52,6 @@ app.mapDirective = function() {
 app.module.directive('appMap', app.mapDirective);
 
 
-
 /**
  * @param {ngeo.Location} ngeoLocation ngeo Location service.
  * @param {ngeo.Debounce} ngeoDebounce ngeo Debounce service.

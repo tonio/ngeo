@@ -27,7 +27,6 @@ app.module.value('gmfWmsUrl',
     'https://geomapfish-demo.camptocamp.net/1.6/wsgi/mapserv_proxy');
 
 
-
 /**
  * @constructor
  * @param {angular.$http} $http Angular's $http service.

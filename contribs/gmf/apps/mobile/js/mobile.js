@@ -28,7 +28,6 @@ appModule.constant(
     'https://geomapfish-demo.camptocamp.net/2.0/wsgi');
 
 
-
 /**
  * @param {ngeo.FeatureOverlayMgr} ngeoFeatureOverlayMgr The ngeo feature
  *     overlay manager service.
@@ -51,7 +50,6 @@ app.MobileController = function(
       $scope, ngeoGetBrowserLanguage, gmfThemes);
 };
 goog.inherits(app.MobileController, gmf.AbstractMobileController);
-
 
 
 appModule.controller('MobileController', app.MobileController);

@@ -56,7 +56,6 @@ app.searchDirective = function() {
 app.module.directive('appSearch', app.searchDirective);
 
 
-
 /**
  * @constructor
  * @param {angular.Scope} $rootScope Angular root scope.
